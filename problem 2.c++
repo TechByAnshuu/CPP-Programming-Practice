@@ -535,4 +535,51 @@ int main() {
     return 0;
 }
 
+// using prefix sum formula to find sum in array
 
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    vector<int> v = {10, 20, 30, 40, 50};
+    vector<int> prefixSum(v.size());
+    
+    prefixSum[0] = v[0];
+    for(int i = 1; i < v.size(); i++) {
+        prefixSum[i] = prefixSum[i - 1] + v[i];
+    }
+
+    cout << "Prefix Sum Array: ";
+    for(int i = 0; i < prefixSum.size(); i++) {
+        cout << prefixSum[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+// prefix sum in array hhaving l = 2 ,R= 5 to find sum between l to r index
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(){
+    int l = 2;
+    int r = 4;
+    int sum;
+    vector <int> v={2,3,4,5,6};
+    vector<int> ps(v.size());
+    ps[0] = v[0];
+    for(int i = 1; i < v.size(); i++){
+        ps[i] = ps[i-1] + v[i];
+    }
+
+    if(l == 0){
+        sum = ps[r];
+    }else{
+        sum = ps[r] - ps[l-1];
+    }   
+    cout << "Sum from index " << l << " to " << r << " is: " << sum << endl;
+    return 0;  
+}

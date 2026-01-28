@@ -17,3 +17,101 @@ for(int  i = 1;i,n;++1){
     ini  mini(mini,prices[i]);
     maxi = max,proices[i]-mini);
 }
+
+// Length of Last Word
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int i =s.length() -1;
+        int len =0;
+        // write from the last
+        while(i>=0 && s[i] == ' '){
+            i--;
+
+        }
+        while(i>=0 && s[i] != ' '){
+            len++;
+            i--;
+        }
+        return len;
+
+        
+    }
+};
+
+// Reverse String II - Reverse Words in a String 
+
+class Solution {
+public:
+    void reverseString(vector<char>& s, int start, int end) {
+        while(start < end){
+            swap(s[start], s[end]);
+            start++;
+            end--;
+        }
+    }
+    void reverseWords(vector<char>& s) {
+        int n = s.size();
+        reverseString(s, 0, n - 1); // Reverse the entire string
+
+        int start = 0;
+        for(int i = 0; i <= n; i++) {
+            if(i == n || s[i] == ' ') {
+                reverseString(s, start, i - 1); // Reverse each word
+                start = i + 1;
+            }
+        }
+    }
+
+        
+};
+
+// Reverse String using Recursion
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+void reverseString(string &s, int start, int end) {
+    if (start >= end)
+        return;
+
+    swap(s[start], s[end]);
+    reverseString(s, start + 1, end - 1);
+}
+
+int main() {
+    string s;
+    getline(cin, s);
+
+    reverseString(s, 0, s.length() - 1);
+
+    cout << s << endl;
+    return 0;
+}
+
+
+// Valid Palindrome
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        int l=0,r=s.length()-1;
+        while(l<r){
+            while(l<r && !isalnum(s[l])) l++;
+            while(l<r && !isalnum(s[r])) r--;
+            if(tolower(s[l]) != tolower(s[r])) return false;
+            l++;
+            r--;
+        }
+        return true;
+    }    
+};
+
+
+bool validPalindrome(string s){
+    int l = 0,r = s.length()-1;
+    
+
+}

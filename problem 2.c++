@@ -382,7 +382,7 @@ int main() {
     return 0;
 }
 
-mide value is small from x and find the large value froom x in array FROM binary search
+mid value is small from x and find the large value froom x in array FROM binary search
 #include <iostream>
 #include <vector>   
 using namespace std;
@@ -583,3 +583,212 @@ int main(){
     cout << "Sum from index " << l << " to " << r << " is: " << sum << endl;
     return 0;  
 }
+# left sum or right sum is equal in arry
+#include <iostream>
+#include <vector>
+using namespace std;
+int main(){
+    int l = 0;
+    int r = 5;
+    int sum;
+    vector <int> v={1,7,3,6,5,6};
+    vector <int> ps(v.size());
+    
+    ps[0] = v[0];
+
+    for(int i = 1; i < v.size(); i++){
+        ps[i] = ps[i-1] + v[i];
+    }
+    use if else condition to find left sum and right sum
+    for(int i = 0; i < v.size(); i++){
+        int leftSum = (i == 0) ? 0 : ps[i-1];
+        int rightSum = ps[v.size() - 1] - ps[i];
+        if(leftSum == rightSum){
+            cout << "Equilibrium index found at: " << i << endl;
+            return 0;
+            // you have to print left sum and right sum also
+            cout << "Left sum: " << leftSum << ", Right sum: " << rightSum << endl;
+
+        }
+
+    }
+    return 0;
+
+}
+
+// do it this in normal if else withiut using conditons
+// int leftSum = (i == 0) ? 0 : ps[i-1];
+//         int rightSum = ps[v.size() - 1] - ps[i];
+
+#include <iostream>
+#include <vector>
+using namespace std;
+int main() {
+    vector<int> v = {1, 7, 3, 6, 5, 6};
+    vector<int> ps(v.size());
+
+    ps[0] = v[0];
+    for(int i = 1; i < v.size(); i++) {
+        ps[i] = ps[i - 1] + v[i];
+    }
+
+    for(int i = 0; i < v.size(); i++) {
+        int leftSum;
+        if(i == 0) {
+            leftSum = 0;
+        } else {
+            leftSum = ps[i - 1];
+        }
+
+        int rightSum = ps[v.size() - 1] - ps[i];
+
+        if(leftSum == rightSum) {
+            cout << "Equilibrium index found at: " << i << endl;
+            cout << "Left sum: " << leftSum << ", Right sum: " << rightSum << endl;
+            return 0;
+        }
+    }
+
+    cout << "No equilibrium index found." << endl;
+    return 0;
+}
+
+two sum pointers approach
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main() {
+    vector<int> v = {2, 7, 11, 15};
+    int target = 9;
+
+    int left = 0;
+    int right = v.size() - 1;
+
+    while(left < right) {
+        int currentSum = v[left] + v[right];
+        if(currentSum == target) {
+            cout << "Indices: " << left << ", " << right << endl;
+            return 0;
+        } else if(currentSum < target) {
+            left++;
+        } else {
+            right--;
+        }
+    }
+
+    cout << "No two sum solution found." << endl;
+    return 0;
+}
+
+using a two sum with the unsorted  array  homework
+using two pinters two replac element with the help of swapping in a array like [1,2,4,6,8,9] to [9,8,6,4,2,1]
+
+
+using recursion to find factorial of a number
+#include <iostream>
+using namespace std;
+int factorial(int n) {
+    if(n == 0 || n == 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+int main() {
+    int n;
+    cin >> n;
+    cout << "Factorial of " << n << " is " << factorial(n) << endl;
+    return 0;
+}
+
+// using iteration to find factorial of a number
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    int fact = 1;
+    for(int i = 2; i <= n; i++) {
+        fact *= i;
+    }
+    cout << "Factorial of " << n << " is " << fact << endl;
+    return 0;
+}
+
+using recursion to find power of a number
+#include <iostream>
+using namespace std;
+int power(int base, int exp) {
+    if(exp == 0) {
+        return 1;
+    }
+    return base * power(base, exp - 1);
+}
+int main() {
+    int base, exp;
+    cin >> base >> exp;
+    cout << base << " raised to the power " << exp << " is " << power(base, exp) << endl;
+    return 0;
+}
+
+using recurrsion to find fibonacci series find 10 elements and print 10 elements
+#include <iostream>
+using namepace std;
+int fibonacci(int n) {
+    if(n <= 1) {
+        return n;
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main() {
+    for(int i = 0; i < 10; i++) {
+        cout << fibonacci(i) << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+
+class solution{
+    public int fib(int x){
+        if(x==0||x==1){
+            return x;
+
+        }
+        int f1 = fib(x-1);
+        int f3 = fib(x-2);
+        return f1+f3;
+    }
+    int main(){
+        int n;
+        cin >> n;
+        solution s;
+        for(int i=0;i <=n;i++){
+            return fib(i) << " ";
+            
+        }
+    }
+    cout <<endl;
+    return 0;
+}
+
+
+// STRING DESCIPTION:-
+
+// USE GETLINE TO TAKE INPUT WITH user
+#include <bits/stdc++.h>
+using namespace std;
+int main() {
+    string a;
+    getline(cin, a);
+    for(int i = 0;i<)
+
+    cout << a[4] << endl;
+    
+    return 0;
+	
+
+}
+
+

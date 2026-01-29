@@ -14,7 +14,7 @@ public:
 };
 
 for(int  i = 1;i,n;++1){
-    ini  mini(mini,prices[i]);
+    int  mini(mini,prices[i]);
     maxi = max,proices[i]-mini);
 }
 
@@ -114,4 +114,78 @@ bool validPalindrome(string s){
     int l = 0,r = s.length()-1;
     
 
+}
+
+
+
+class Solution(){
+    public int ()
+}
+
+make unordered set 
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    unordered_set<int> us;
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        us.insert(x);
+    }
+    cout<<us.size()<<endl;
+    return 0;
+    
+}
+
+// use map function to count frequency of elements in array
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    map<int,int> mp;
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        mp[x]++;
+    }
+    for(auto it:mp){
+        cout<<it.first<<" "<<it.second<<endl;
+    }
+    return 0;
+}
+    while(l<r){
+        if(s[l] != s[r]) return false;
+        l++;
+        r--;
+    }
+    return true;
+}
+
+
+int main(){
+    maps
+}
+
+
+// mapde declar kara mp name assign kiya v[i] banaya
+#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    map<int,int> mp;
+    vector<int> v;
+    for(int i=0;i<n;i++){
+        int x;
+        cin>>x;
+        mp[x]++;
+        v.push_back(x);
+    }
+    for(auto it:mp){
+        cout<<it.first<<" "<<it.second<<endl;
+    }
+    return 0;
 }

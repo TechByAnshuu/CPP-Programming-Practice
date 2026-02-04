@@ -230,4 +230,236 @@ int main(){
 
 }
 
-   
+//    make an object head using class and function new node head = first;, data = 20 , ptr = nullptr and first = second
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* ptr;
+};
+
+int main() {
+    // create nodes
+    Node* first = new Node();
+    Node* second = new Node();
+    Node* third = new Node();
+
+    // first node
+    first->data = 20;
+    first->ptr = second;
+
+    // second node
+    second->data = 40;
+    second->ptr = third;
+
+    // third node (user input)
+    cout << "Enter value for third node: ";
+    cin >> third->data;
+    third->ptr = nullptr;
+
+    // head points to first
+    Node* head = first;
+
+    // print list
+    Node* temp = head;
+    while (temp != nullptr) {
+        cout << temp->data << " -> ";
+        temp = temp->ptr;
+    }
+    cout << "NULL";
+
+    return 0;
+}
+
+// create a void function for
+
+
+#include <bits/stdc++.h>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node *nexet;
+    Node(){
+        data = 0;
+        nexet = NULL;
+    }
+    void print(Node* head){
+        Node* temp = head;
+        while(temp!=NULL){
+            cout << temp ->data << " ";
+            if(temp -> next != NULL){
+                cout << "-> ";
+            }
+            temp = temp -> next;
+
+        }
+    }
+}
+
+// insert at head and insert at tail function in linkedlist
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    // default constructor
+    Node() {
+        data = 0;
+        next = NULL;
+    }
+
+    // parameter constructor
+    Node(int d) {
+        data = d;
+        next = NULL;
+    }
+
+    static void print(Node* head) {
+        Node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data;
+            if (temp->next != NULL) cout << " -> ";
+            temp = temp->next;
+        }
+        cout << " -> NULL\n";
+    }
+
+    // insert at head
+    static void insertAtHead(Node* &head, int data) {
+        Node* newNode = new Node(data);
+        newNode->next = head;
+        head = newNode;
+    }
+
+    // insert at tail
+    static void insertAtTail(Node* &head, int data) {
+        Node* newNode = new Node(data);
+
+        if (!head) {
+            head = newNode;
+            return;
+        }
+
+        Node* temp = head;
+        while (temp->next != NULL) {
+            temp = temp->next;
+        }
+
+        temp->next = newNode;
+    }
+};
+
+int main() {
+    Node* head = NULL;
+
+    Node::insertAtHead(head, 20);
+    Node::insertAtTail(head, 40);
+
+    int x;
+    cout << "Enter value: ";
+    cin >> x;
+    Node::insertAtTail(head, x);
+
+    Node::print(head);
+
+    return 0;
+}
+
+
+// delete node in linkedlist using traversal
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int d) {
+        data = d;
+        next = NULL;
+    }
+
+    static void print(Node* head) {
+        Node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data;
+            if (temp->next != NULL) cout << " -> ";
+            temp = temp->next;
+        }
+        cout << " -> NULL\n";
+    }
+
+    static void insertAtTail(Node* &head, int data) {
+        Node* newNode = new Node(data);
+
+        if (!head) {
+            head = newNode;
+            return;
+        }
+
+        Node* temp = head;
+        while (temp->next != NULL)
+            temp = temp->next;
+
+        temp->next = newNode;
+    }
+
+    // 🔥 delete node using traversal
+    static void deleteNode(Node* &head, int key) {
+        if (!head) return;
+
+        // case 1: delete head
+        if (head->data == key) {
+            Node* del = head;
+            head = head->next;
+            delete del;
+            return;
+        }
+
+        // traverse to find node
+        Node* temp = head;
+        while (temp->next != NULL && temp->next->data != key) {
+            temp = temp->next;
+        }
+
+        // if not found
+        if (temp->next == NULL) {
+            cout << "Value not found\n";
+            return;
+        }
+
+        // delete node
+        Node* del = temp->next;
+        temp->next = temp->next->next;
+        delete del;
+    }
+};
+
+int main() {
+    Node* head = NULL;
+
+    Node::insertAtTail(head, 10);
+    Node::insertAtTail(head, 20);
+    Node::insertAtTail(head, 30);
+    Node::insertAtTail(head, 40);
+
+    cout << "Before delete:\n";
+    Node::print(head);
+
+    Node::deleteNode(head, 30);
+
+    cout << "After delete:\n";
+    Node::print(head);
+
+    return 0;
+}

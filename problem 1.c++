@@ -13,9 +13,9 @@ public:
     }
 };
 
-for(int  i = 1;i,n;++1){
+for(int  i = 1;i<n;++1){
     int  mini(mini,prices[i]);
-    maxi = max,proices[i]-mini);
+    maxi = max,prices[i]-mini);
 }
 
 // Length of Last Word
@@ -460,5 +460,48 @@ public:
         }
 
         return water;
+    }
+}
+
+// 876. Middle of the Linked List
+
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* slow  = head;
+        ListNode* fast = head;
+        while(fast && fast->next){
+            fast = fast->next->next;
+            slow = slow-> next;
+        }
+        return slow;
+    }
+};
+
+
+
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+
+
+            if(slow == fast){
+                slow = head;
+
+                while (slow != fast){
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                return slow;
+            }
+
+        }
+        return null;
+        
     }
 }

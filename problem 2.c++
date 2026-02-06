@@ -813,3 +813,163 @@ int main(){
     
 
 }
+
+
+// write a Program for insertion of a node at a linked list at a usser - defined position using class function
+
+#include <iostream>
+using namespace std;
+
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node(int d){
+        data = d;
+        next = NULL;
+    }
+    void insertAtPosition(int pos , Node* head){
+        Node* newNode = new Node(d);
+        if(pos == 1){
+            newNode->next = head;
+            head = newNode;
+        }else{
+            Node* temp = head;
+            for(int i = 1; i < pos - 1; i++){
+                temp = temp->next;
+
+            }
+            newNode->next = temp->next;
+            temp->next = newNode;
+
+        }    
+    }
+
+}
+
+
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    // constructor
+    Node(int d) {
+        data = d;
+        next = NULL;
+    }
+
+    // insert at user-defined position
+    static void insertAtPosition(Node* &head, int pos, int d) {
+        Node* newNode = new Node(d);
+
+        if (pos == 1) {
+            newNode->next = head;
+            head = newNode;
+            return;
+        }
+
+        Node* temp = head;
+
+        for (int i = 1; i < pos - 1 && temp != NULL; i++) {
+            temp = temp->next;
+        }
+
+        if (temp == NULL) {
+            cout << "Invalid position\n";
+            return;
+        }
+
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+
+    // print list
+    static void print(Node* head) {
+        Node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+        cout << "NULL\n";
+    }
+};
+
+int main() {
+    Node* head = NULL;
+
+    Node::insertAtPosition(head, 1, 10);
+    Node::insertAtPosition(head, 2, 20);
+    Node::insertAtPosition(head, 2, 15);
+
+    Node::print(head);
+
+    return 0;
+}
+
+// write a Program for insertion of a node at a linked list at a usser - defined position using class function
+
+#include <bits/stdc++.h>
+using namespace std;
+class Node{
+    public:
+    int data;
+    Node* next;
+    Node(int d){
+        data = d;
+        next = NULL;
+    }
+    void insertAtPosition(Node* &head,int val, int pos){
+        Node* newNode = new Node(val);
+        if(pos == 1){
+            newNode->next = head;
+            head = newNode;
+        }else{
+            Node* temp = head;
+            for(int i = 1; i < pos - 1 && temp != NULL; i++){
+                temp = temp->next;
+            }if(temp!=NULL){
+                newNode->next = temp->next;
+                temp->next = newNode;
+            }else{
+                cout << "Invalid Position" << endl;
+            }
+        }
+    }
+};
+int main(){
+    int n;
+    cin >> n;
+    Node* head = NULL;
+    Node* tail = NULL;
+    for(int i = 1; i <= n; i++){
+        int num;
+        cin >> num;
+        Node* newNode = new Node(num);
+        if(head == NULL){
+            head = newNode;
+            tail = newNode;
+        }else{
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+    int pos;
+    cin >> pos;
+    int val;
+    cin >> val;
+    head->insertAtPosition(head, val, pos);
+    Node* temp = head;
+    while(temp!=NULL){
+        cout << temp->data;
+        if(temp->next!=NULL){
+            cout << "->";
+        }
+        temp = temp->next;
+    }
+    cout << endl;
+    return 0;
+}

@@ -505,3 +505,14 @@ public class Solution {
         
     }
 }
+
+
+// bubble sort or Selection sort
+
+// 905. Sort Array By Parity
+
+// 922. Sort Array By Parity II
+
+// 464. Maximum Product of Two Elements in an Array
+
+// 215. Kth Largest Element in an Array

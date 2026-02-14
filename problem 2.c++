@@ -973,3 +973,27 @@ int main(){
     cout << endl;
     return 0;
 }
+
+
+// sorting Algorithm
+
+#include <bits/stdc++.h>
+using namespace std;
+vector<int> newArray(vector<int> arr){
+    int arrSize = arr.size();
+    for(int i = 0; i<arrSize ; i++){
+        for(int j = 0; j < arrSize - 1 - i; j++){
+            if(arr[j] > arr[j+1]){
+                swap(arr[j], arr[j+1]);
+            }
+        }
+    }
+    return arr;
+}
+int main(){
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for(int)
+}
+

@@ -997,3 +997,460 @@ int main(){
     for(int)
 }
 
+// make one class and insert  from left or right
+
+
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int val) {
+        data = val;
+        left = null;
+        right = null;
+    }
+}
+
+class BinaryTree {
+    Node root;
+
+    BinaryTree() {
+        root = null;
+    }
+
+    // insert left child
+    void insertLeft(Node parent, int val) {
+        if (parent == null) return;
+        parent.left = new Node(val);
+    }
+
+    // insert right child
+    void insertRight(Node parent, int val) {
+        if (parent == null) return;
+        parent.right = new Node(val);
+    }
+
+    void display(Node node) {
+        if (node == null) return;
+        System.out.print(node.data + " ");
+        display(node.left);
+        display(node.right);
+    }
+
+    public static void main(String[] args) {
+        BinaryTree bt = new BinaryTree();
+
+        bt.root = new Node(10);
+        bt.insertLeft(bt.root, 5);
+        bt.insertRight(bt.root, 20);
+
+        bt.insertLeft(bt.root.left, 3);
+        bt.insertRight(bt.root.left, 7);
+
+        bt.display(bt.root);
+    }
+}
+
+// use stack for putting value and then traverse and put into vector
+
+
+
+// 94. Binary Tree Inorder Traversal
+
+class Solution {
+public:
+    void inorder(TreeNode* root, vector<int>& res){
+
+        if(!root) return;
+
+        inorder(root->left, res);
+        res.push_back(root->val);
+        inorder(root->right, res);
+
+        
+    }
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> store;
+        inorder(root, store);
+        return store;
+    }
+};
+
+
+// Depth first Search Template for tree which used in all 4 types which uses in all the code
+
+#include <bits/stdc++.h>
+using namespace std;
+
+iny N = 1e5 +10;
+void dfs(int vertex);
+int depth[N];
+int height[N];
+// we have to calculate height and depth;
+
+void dfs(int vertex, int par = 0){
+   // take the action on the vertex after entering the vertex
+    for(int  : T){
+         // take action on the child before entering the child
+        if(child == par) continue;// if the node that we are visiting is already considered theen we should skip that case.
+        depth[child] = depth[vertex]+1;
+
+        dfs(child, vertex); 
+    // take action on the child after exiting the child 
+    
+    }
+    // take action on the vertex after exiting the child
+    
+}
+
+int main() {
+    
+    int n;
+    cin >>n:
+    vector<vector<int>> tree(n);
+    for(int i= 0; i<n-1;i++){
+        cin>>x>>y;
+        tree[x].push_back[y];
+        tree[y].push_back[x];
+        
+    }
+	// your code goes here
+
+}
+// input
+// 7
+// 1 2
+// 1 3
+// 2 4
+// 2 5
+// 3 6
+// 3 7
+// This means:
+
+//         1
+//       /   \
+//      2     3
+//     / \   / \
+//    4  5  6  7
+// Expected output
+// Node 1 Depth = 0 Height = 2
+// Node 2 Depth = 1 Height = 1
+// Node 3 Depth = 1 Height = 1
+// Node 4 Depth = 2 Height = 0
+// Node 5 Depth = 2 Height = 0
+// Node 6 Depth = 2 Height = 0
+// Node 7 Depth = 2 Height = 0
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1e5 + 10;
+
+vector<int> tree[N];
+int depth[N];
+int height[N];
+
+// DFS to calculate depth and height
+void dfs(int vertex, int par = 0) {
+
+    // explore children
+    for (int child : tree[vertex]) {
+        if (child == par) continue;
+
+        depth[child] = depth[vertex] + 1;
+        dfs(child, vertex);
+
+        // after returning from child → update height
+        height[vertex] = max(height[vertex], height[child] + 1);
+    }
+}
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n - 1; i++) {
+        int x, y;
+        cin >> x >> y;
+
+        tree[x].push_back(y);
+        tree[y].push_back(x);
+    }
+
+    dfs(1); // assuming 1 is root
+
+    for (int i = 1; i <= n; i++) {
+        cout << "Node " << i
+             << " Depth = " << depth[i]
+             << " Height = " << height[i] << endl;
+    }
+
+    return 0;
+}
+
+// Subtree sum
+
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1e5 + 10;
+
+vector<int> tree[N];
+int depth[N];
+int height[N];
+int subtreeSum[N];
+int evenCount[N];
+int value[N];
+int maxDepth = 0;
+
+void dfs(int vertex, int par = 0) {
+
+    subtreeSum[vertex] = value[vertex];
+
+    // check even
+    evenCount[vertex] = (value[vertex] % 2 == 0);
+
+    for (int child : tree[vertex]) {
+        if (child == par) continue;
+
+        depth[child] = depth[vertex] + 1;
+        maxDepth = max(maxDepth, depth[child]);
+
+        dfs(child, vertex);
+
+        height[vertex] = max(height[vertex], height[child] + 1);
+
+        subtreeSum[vertex] += subtreeSum[child];
+        evenCount[vertex] += evenCount[child];
+    }
+}
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    for (int i = 1; i <= n; i++) {
+        cin >> value[i];
+    }
+
+    for (int i = 0; i < n - 1; i++) {
+        int x, y;
+        cin >> x >> y;
+        tree[x].push_back(y);
+        tree[y].push_back(x);
+    }
+
+    dfs(1);
+
+    cout << "Maximum depth from root = " << maxDepth << endl;
+
+    for (int i = 1; i <= n; i++) {
+        cout << "Node " << i
+             << " subtree sum = " << subtreeSum[i]
+             << ", even count = " << evenCount[i]
+             << endl;
+    }
+
+    return 0;
+}
+
+// DFS recursive code
+
+#include <bits/stdc++.h>
+using namespace std;
+
+const int N = 1e5 + 10;
+
+vector<int> tree[N];
+int depth[N];
+int height[N];
+int subtreeSum[N];
+int evenCount[N];
+int value[N];
+int maxDepth = 0;
+
+void dfs(int vertex, int parent = 0) {
+
+    // take action on entering node
+    subtreeSum[vertex] = value[vertex];
+    evenCount[vertex] = (value[vertex] % 2 == 0);
+
+    for (int child : tree[vertex]) {
+        if (child == parent) continue;
+
+        depth[child] = depth[vertex] + 1;
+        maxDepth = max(maxDepth, depth[child]);
+
+        dfs(child, vertex);  // ✅ recursive call
+
+        // take action after returning from child
+        height[vertex] = max(height[vertex], height[child] + 1);
+        subtreeSum[vertex] += subtreeSum[child];
+        evenCount[vertex] += evenCount[child];
+    }
+}
+
+int main() {
+
+    int n;
+    cin >> n;
+
+    for (int i = 1; i <= n; i++)
+        cin >> value[i];
+
+    for (int i = 0; i < n - 1; i++) {
+        int x, y;
+        cin >> x >> y;
+        tree[x].push_back(y);
+        tree[y].push_back(x);
+    }
+
+    dfs(1);   // root = 1
+
+    cout << "Max depth = " << maxDepth << "\n\n";
+
+    for (int i = 1; i <= n; i++) {
+        cout << "Node " << i
+             << " | Subtree Sum = " << subtreeSum[i]
+             << " | Even Count = " << evenCount[i]
+             << " | Height = " << height[i]
+             << " | Depth = " << depth[i]
+             << endl;
+    }
+
+    return 0;
+}
+
+
+// DFS Recursive Code
+#include <bits/stdc++.h>
+using namespace std;
+
+// maximum number of nodes
+const int N = 1e5 + 10;
+
+// adjacency list to store tree
+vector<int> tree[N];
+
+// arrays to store properties of nodes
+int depth[N];        // distance from root
+int height[N];       // height of subtree
+int subtreeSum[N];   // sum of values in subtree
+int evenCount[N];    // count of even numbers in subtree
+int value[N];        // value of each node
+int parent[N];       // parent of each node
+
+int maxDepth = 0;    // global maximum depth
+
+//--------------------------------------------------
+// DFS function (recursive)
+// vertex = current node
+// par = parent of current node
+//--------------------------------------------------
+void dfs(int vertex, int par = 0) {
+
+    // store parent of current node
+    parent[vertex] = par;
+
+    // when entering node:
+    // start subtree sum with its own value
+    subtreeSum[vertex] = value[vertex];
+
+    // if value is even → count = 1 else 0
+    evenCount[vertex] = (value[vertex] % 2 == 0);
+
+    // visit all children of vertex
+    for (int child : tree[vertex]) {
+
+        // avoid going back to parent
+        if (child == par) continue;
+
+        // set depth of child
+        depth[child] = depth[vertex] + 1;
+
+        // update maximum depth
+        maxDepth = max(maxDepth, depth[child]);
+
+        // recursive call
+        dfs(child, vertex);
+
+        // after returning from child:
+
+        // update height of current node
+        height[vertex] = max(height[vertex], height[child] + 1);
+
+        // add child subtree values
+        subtreeSum[vertex] += subtreeSum[child];
+
+        // add child even count
+        evenCount[vertex] += evenCount[child];
+    }
+}
+
+//--------------------------------------------------
+// MAIN FUNCTION
+//--------------------------------------------------
+int main() {
+
+    int n;
+    cin >> n;  // number of nodes
+
+    // input node values
+    for (int i = 1; i <= n; i++)
+        cin >> value[i];
+
+    // input edges (tree has n-1 edges)
+    for (int i = 0; i < n - 1; i++) {
+        int x, y;
+        cin >> x >> y;
+
+        // undirected edge
+        tree[x].push_back(y);
+        tree[y].push_back(x);
+    }
+
+    // start DFS from root = 1
+    dfs(1, 0);
+
+    cout << "Max depth = " << maxDepth << "\n\n";
+
+    // print results for each node
+    for (int i = 1; i <= n; i++) {
+        cout << "Node " << i
+             << " | Subtree Sum = " << subtreeSum[i]
+             << " | Even Count = " << evenCount[i]
+             << " | Height = " << height[i]
+             << " | Depth = " << depth[i]
+             << " | parent = " << parent[i]
+             << endl;
+    }
+
+    return 0;
+}
+
+
+
+// input 
+// 7
+// 5 2 8 1 6 3 4
+// 1 2
+// 1 3
+// 2 4
+// 2 5
+// 3 6
+// 3 7
+
+
+
+// Max depth = 2
+
+// Node 1 | Subtree Sum = 29 | Even Count = 4 | Height = 2 | Depth = 0 | parent = 0
+// Node 2 | Subtree Sum = 9  | Even Count = 2 | Height = 1 | Depth = 1 | parent = 1
+// Node 3 | Subtree Sum = 15 | Even Count = 2 | Height = 1 | Depth = 1 | parent = 1
+// Node 4 | Subtree Sum = 1  | Even Count = 0 | Height = 0 | Depth = 2 | parent = 2
+// Node 5 | Subtree Sum = 6  | Even Count = 1 | Height = 0 | Depth = 2 | parent = 2
+// Node 6 | Subtree Sum = 3  | Even Count = 0 | Height = 0 | Depth = 2 | parent = 3
+// Node 7 | Subtree Sum = 4  | Even Count = 1 | Height = 0 | Depth = 2 | parent = 3
